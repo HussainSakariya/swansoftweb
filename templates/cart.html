@@ -1,0 +1,89 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+{% block content %}
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Shopping Cart</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="category.html">Cart</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Cart Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cartitem in cart_data %}
+                        <tr>
+                            <td>
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <img style="height: 150px; width:150px" src="{{cartitem.product.proimg.url}}" alt="">
+                                    </div>
+                                    <div class="media-body">
+                                        <p>{{cartitem.product.name}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <h5><span id='price{{cartitem.id}}'>{{cartitem.product.price}}</span></h5>
+                            </td>
+                            <td>
+                                <div class="product_count">
+                                    <input type="text" name="qty" id="sst{{cartitem.qty}}" maxlength="12" value="{{cartitem.qty}}" title="Quantity:"
+                                        class="input-text qty" readonly>
+                                    
+                                </div>
+                            </td>
+                            <td>
+                                <h5>{{cartitem.totprice}}</h5>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        
+                        
+                        <tr class="out_button_area">
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+                                <div class="checkout_btn_inner d-flex align-items-center">
+                                    <a class="gray_btn" href="{% url 'index' %}">Continue Shopping</a>
+                                    <a class="primary-btn" href="{% url 'checkout' %}">Proceed to checkout</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Cart Area =================-->
+
+{% endblock %}

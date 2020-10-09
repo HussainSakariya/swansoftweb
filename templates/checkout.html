@@ -1,0 +1,89 @@
+{% extends 'header_footer.html' %}
+{% load static %}
+{% block content %}
+    <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Checkout</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="single-product.html">Checkout</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Checkout Area =================-->
+    <section class="checkout_area section_gap">
+        <div class="container">
+            
+            
+            <div class="billing_details">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h3>Billing Details</h3>
+                        <table>
+                            <tr>
+                                <td>Mo No:</td>
+                                <td>{{request.user.mo_number}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>{{request.user.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td>{{request.user.address}}</td>
+                            </tr>
+                        </table>
+                        <br>
+                        <h3>Shipping Details</h3>
+                        <table>
+                            <tr>
+                                <td>Mo No:</td>
+                                <td>{{request.user.mo_number}}</td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+                                <td>{{request.user.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>Address:</td>
+                                <td>{{request.user.address}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="order_box">
+                            <h2>Your Order</h2>
+                            <ul class="list">
+                                
+                                <li><a href="#">Product <span>Total</span></a></li>
+                                {% for item in cart_data %}                    
+                                <li><a href="#">{{item.product.name}} <span class="middle">x {{item.qty}}</span> <span class="last">{{item.totprice}}</span></a></li>
+                                {% endfor %}
+            
+                            </ul>
+                            <ul class="list list_2">
+                                <li><a href="#">Subtotal <span>{{tot}}</span></a></li>
+                              
+                            </ul>
+                            
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option4" name="selector">
+                                <label for="f-option4">I’ve read and accept the </label>
+                                <a href="#">terms & conditions*</a>
+                            </div>
+                            <a class="primary-btn" href="{% url 'order' %}" onclick="<scrpit>alert('You Order Submitted')</scrpit>">Proceed to Paypal</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Checkout Area =================-->
+    {% endblock %}
